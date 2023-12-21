@@ -21,12 +21,15 @@ class Sort {
     }
   }
 
-  //void selectionSort(MyRectangle[] rectangles) {
-  //  for (int i = 0; i < rectangles.length; i++) {
-  //    float min = rectangles[i].getHeight();
-  //    for (int j = 1; j < rectangles.length; j++) {
-
-  //    }
-  //  }
-  //}
+  void selectionSort() {
+    for (int i = 0; i < rectangles.length; i++) {
+      int maxIndex = i;
+        for (int j = i + 1; j < rectangles.length; j++) {
+            if (rectangles[j].getHeight() > rectangles[maxIndex].getHeight()) {
+                maxIndex = j;
+            }
+        }
+        swap(i, maxIndex);
+    }
+  }
 }
