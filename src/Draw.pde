@@ -9,7 +9,7 @@ void setup() {
   createArray();
   drawArray();
   sort = new Sort(rectangles);
-  sort.selectionSort();
+  sort.quickSort();
   display(rectangles);
 }
 

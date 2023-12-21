@@ -32,4 +32,30 @@ class Sort {
         swap(i, maxIndex);
     }
   }
+  void quickSort() { quickSort(0, rectangles.length-1); }
+  
+  void quickSort(int low, int high) {
+    if(low < high){
+      int partitionIndex = partition(low, high);
+      quickSort(low, partitionIndex-1);
+      quickSort(partitionIndex+1, high);
+    }
+  }
+  
+  int partition(int low, int high) {
+    int pivotIndex = int((high+low)/2);
+    int pivot = int(rectangles[int((high+low)/2)].getHeight());
+    swap(pivotIndex, high);
+    
+    int i = low - 1;
+    
+    for (int j = low; j < high; j++){
+      if (rectangles[j].getHeight() > pivot){
+        i ++;
+        swap(i, j);
+      }
+    } 
+    swap(i+1, high);
+    return i+1;
+  }
 }
