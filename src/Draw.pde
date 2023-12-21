@@ -1,5 +1,6 @@
 ArrayList<Bar> bars;
 MyRectangle[] rectangles;
+Sort sort;
 void setup() {
   background(0, 0, 0);
   size(1280, 720);
@@ -7,7 +8,8 @@ void setup() {
   rectangles = new MyRectangle[100];
   createArray();
   drawArray();
-  bubbleSort(rectangles);
+  sort = new Sort(rectangles);
+  sort.bubbleSort();
   display(rectangles);
 }
 
