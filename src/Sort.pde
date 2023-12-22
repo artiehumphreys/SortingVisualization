@@ -17,6 +17,8 @@ class Sort {
     fill(100, 100, 255);
     rect.display();
   }
+  
+  //For Reference
 
   void bubbleSort() {
     background(0);
@@ -36,8 +38,8 @@ class Sort {
       if (j < rectangles.length - i - 1) {
         if (rectangles[j].getHeight() < rectangles[j + 1].getHeight()) {
           needSwap = true;
-          select(rectangles[j]);
-          select(rectangles[j + 1]);
+          rectangles[j].isSelected = true;
+          rectangles[j+1].isSelected = true;
         }
         if (needSwap) {
           swap(j, j + 1);

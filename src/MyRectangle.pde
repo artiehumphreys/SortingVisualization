@@ -11,7 +11,13 @@ class MyRectangle {
   }
 
   void display() {
-    rect(x, y, w, h);
+    if (isSelected){
+      fill(50, 50, 255);
+      rect(x, y, w, h);
+    } else {
+      fill(255, 255, 255);
+      rect(x, y, w, h);
+    }
   }
 
   float getHeight() {

@@ -16,11 +16,11 @@ void setup() {
 
 void draw() {
   background(0);
-  delay(25);
+  delay(100);
   if (isSorting) {
     isSorting = sort.bubbleSortStep();
   }
-  //display(rectangles);
+  display(rectangles);
 }
 
 void createArray() {
@@ -40,7 +40,10 @@ void drawArray() {
 void display(MyRectangle[] rectangles) {
   background(0, 0, 0);
   for (MyRectangle rect : rectangles) {
-    fill(255);
     rect.display();
+    rect.isSelected = false;
   }
+}
+
+void display() {
 }
