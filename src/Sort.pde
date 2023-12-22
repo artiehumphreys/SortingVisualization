@@ -12,11 +12,6 @@ class Sort {
     rectangles[a].setHeight(rectangles[b].getHeight());
     rectangles[b].setHeight(temp);
   }
-
-  void select(MyRectangle rect) {
-    fill(100, 100, 255);
-    rect.display();
-  }
   
   //For Reference
 
@@ -25,8 +20,6 @@ class Sort {
     for (int i = 0; i < rectangles.length; i++) {
       for (int j = 0; j < rectangles.length - i - 1; j++) {
         if (rectangles[j].getHeight() < rectangles[j+1].getHeight()) {
-          select(rectangles[j]);
-          select(rectangles[j+1]);
           swap(j, j+1);
         }
       }

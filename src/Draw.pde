@@ -16,7 +16,7 @@ void setup() {
 
 void draw() {
   background(0);
-  delay(100);
+  delay(50);
   if (isSorting) {
     isSorting = sort.bubbleSortStep();
   }
@@ -43,7 +43,4 @@ void display(MyRectangle[] rectangles) {
     rect.display();
     rect.isSelected = false;
   }
-}
-
-void display() {
 }
