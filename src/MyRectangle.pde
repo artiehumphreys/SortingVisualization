@@ -1,6 +1,7 @@
 class MyRectangle {
   float x, y;
   float w, h;
+  boolean isSelected;
 
   MyRectangle(float x, float y, float w, float h) {
     this.x = x;

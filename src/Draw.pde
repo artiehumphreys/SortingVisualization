@@ -1,16 +1,26 @@
 ArrayList<Bar> bars;
 MyRectangle[] rectangles;
+boolean isSorting;
 Sort sort;
+
 void setup() {
-  background(0, 0, 0);
   size(1280, 720);
+  background(0);
   bars = new ArrayList<Bar>();
   rectangles = new MyRectangle[100];
   createArray();
   drawArray();
   sort = new Sort(rectangles);
-  sort.quickSort();
-  display(rectangles);
+  isSorting = true;
+}
+
+void draw() {
+  background(0);
+  delay(25);
+  if (isSorting) {
+    isSorting = sort.bubbleSortStep();
+  }
+  //display(rectangles);
 }
 
 void createArray() {
@@ -30,6 +40,7 @@ void drawArray() {
 void display(MyRectangle[] rectangles) {
   background(0, 0, 0);
   for (MyRectangle rect : rectangles) {
+    fill(255);
     rect.display();
   }
 }
