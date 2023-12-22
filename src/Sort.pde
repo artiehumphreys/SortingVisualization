@@ -29,10 +29,10 @@ class Sort {
   boolean bubbleSortStep() {
     if (i < rectangles.length) {
       if (j < rectangles.length - i - 1) {
+        rectangles[j].isSelected = true;
+        rectangles[j+1].isSelected = true;
         if (rectangles[j].getHeight() < rectangles[j + 1].getHeight()) {
           needSwap = true;
-          rectangles[j].isSelected = true;
-          rectangles[j+1].isSelected = true;
         }
         if (needSwap) {
           swap(j, j + 1);

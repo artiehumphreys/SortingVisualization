@@ -16,7 +16,7 @@ void setup() {
 
 void draw() {
   background(0);
-  delay(50);
+  delay(0);
   if (isSorting) {
     isSorting = sort.bubbleSortStep();
   }
