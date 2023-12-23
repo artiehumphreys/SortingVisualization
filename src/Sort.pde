@@ -75,9 +75,10 @@ boolean selectionSortStep() {
     }
     if (j < rectangles.length) {
       rectangles[j].isSelected = true;
+      rectangles[maxIndex].isSelected = true;
       if (rectangles[j].getHeight() > rectangles[maxIndex].getHeight()) {
         maxIndex = j;
-        rectangles[maxIndex].isSelected = true;
+        //rectangles[maxIndex].isSelected = true;
       }
       j++;
     } else {
@@ -88,6 +89,10 @@ boolean selectionSortStep() {
       j = i;
     }
     return true;
+  } else if (count < rectangles.length) {
+      rectangles[count].isDone = true;
+      count ++;
+      return true;
   }
   return false;
 }
