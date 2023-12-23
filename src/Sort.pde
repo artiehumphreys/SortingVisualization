@@ -2,6 +2,7 @@ class Sort {
   MyRectangle[] rectangles;
   boolean needSwap = false;
   int i = 0, j = 0;
+  int count;
 
   Sort(MyRectangle[] rectangles) {
     this.rectangles = rectangles;
@@ -25,6 +26,19 @@ class Sort {
       }
     }
   }
+  
+  void selectionSort() {
+    for (int i = 0; i < rectangles.length; i++) {
+      int maxIndex = i;
+      for (int j = i + 1; j < rectangles.length; j++) {
+        if (rectangles[j].getHeight() > rectangles[maxIndex].getHeight()) {
+          maxIndex = j;
+        }
+      }
+      swap(i, maxIndex);
+    }
+  }
+  
 
   boolean bubbleSortStep() {
     if (i < rectangles.length) {
@@ -45,22 +59,21 @@ class Sort {
       }
       return true;
     }
+    else if (count < rectangles.length){
+      rectangles[count].isDone = true;
+      count ++;
+      return true;
+    }
     return false;
   }
 
-  void selectionSort() {
-    for (int i = 0; i < rectangles.length; i++) {
-      int maxIndex = i;
-      for (int j = i + 1; j < rectangles.length; j++) {
-        if (rectangles[j].getHeight() > rectangles[maxIndex].getHeight()) {
-          maxIndex = j;
-        }
-      }
-      swap(i, maxIndex);
+  boolean selectionSortStep(){
+    if (i < rectangles.length){
+        
     }
+    return false;
   }
-
-
+  
 
 
 
