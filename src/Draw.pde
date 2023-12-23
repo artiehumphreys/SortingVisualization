@@ -18,7 +18,7 @@ void draw() {
   background(0);
   delay(0);
   if (isSorting) {
-    isSorting = sort.bubbleSortStep();
+    isSorting = sort.selectionSortStep();
   }
   display(rectangles);
 }

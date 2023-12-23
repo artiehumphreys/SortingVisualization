@@ -13,7 +13,7 @@ class Sort {
     rectangles[a].setHeight(rectangles[b].getHeight());
     rectangles[b].setHeight(temp);
   }
-  
+
   //For Reference
 
   void bubbleSort() {
@@ -26,7 +26,7 @@ class Sort {
       }
     }
   }
-  
+
   void selectionSort() {
     for (int i = 0; i < rectangles.length; i++) {
       int maxIndex = i;
@@ -38,7 +38,7 @@ class Sort {
       swap(i, maxIndex);
     }
   }
-  
+
 
   boolean bubbleSortStep() {
     if (i < rectangles.length) {
@@ -58,22 +58,40 @@ class Sort {
         i++;
       }
       return true;
-    }
-    else if (count < rectangles.length){
+    } else if (count < rectangles.length) {
       rectangles[count].isDone = true;
       count ++;
       return true;
     }
     return false;
   }
-
-  boolean selectionSortStep(){
-    if (i < rectangles.length){
-        
-    }
-    return false;
-  }
   
+  int maxIndex = 0;
+
+boolean selectionSortStep() {
+  if (i < rectangles.length) {
+    if (i == j) { 
+      maxIndex = i;
+    }
+    if (j < rectangles.length) {
+      rectangles[j].isSelected = true;
+      if (rectangles[j].getHeight() > rectangles[maxIndex].getHeight()) {
+        maxIndex = j;
+        rectangles[maxIndex].isSelected = true;
+      }
+      j++;
+    } else {
+      if (maxIndex != i) {
+        swap(i, maxIndex);
+      }
+      i++;
+      j = i;
+    }
+    return true;
+  }
+  return false;
+}
+
 
 
 
