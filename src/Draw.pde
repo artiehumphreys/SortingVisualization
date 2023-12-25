@@ -16,9 +16,8 @@ void setup() {
 
 void draw() {
   background(0);
-  delay(0);
   if (isSorting) {
-    isSorting = sort.selectionSortStep();
+    isSorting = sort.quickSortStep();
   }
   display(rectangles);
 }
