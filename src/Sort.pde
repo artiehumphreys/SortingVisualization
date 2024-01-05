@@ -4,10 +4,11 @@ class Sort {
   boolean needSwap = false;
   int i = 0, j = 0;
   int count;
-  Stack<int[]> stack = new Stack<int[]>();
-
+  Stack<Segment> segments = new Stack<Segment>();
+  
   Sort(MyRectangle[] rectangles) {
     this.rectangles = rectangles;
+    segments.push(new Segment(0, rectangles.length - 1));
   }
 
   void swap(int a, int b) {
@@ -40,7 +41,7 @@ class Sort {
       swap(i, maxIndex);
     }
   }
-  
+
   void quickSort() {
     quickSort(0, rectangles.length-1);
   }
@@ -52,7 +53,7 @@ class Sort {
       quickSort(partitionIndex+1, high);
     }
   }
-  
+
   int partition(int low, int high) {
     int pivotIndex = int((high+low)/2);
     int pivot = int(rectangles[pivotIndex].getHeight());
@@ -129,24 +130,22 @@ class Sort {
   }
 
   boolean quickSortStep() {
-    return false; 
+    return false;
   }
-  
-  
 
   boolean partitionStep(int lowIndex, int highIndex) {
-    if (lowIndex == highIndex){
+    if (lowIndex == highIndex) {
       return false;
     }
     rectangles[highIndex].isSelected = true;
     int pivot = int(rectangles[highIndex].getHeight());
     int low = int(rectangles[lowIndex].getHeight());
     int high = int(rectangles[highIndex - 1].getHeight());
-    if (low < pivot){
+    if (low < pivot) {
       rectangles[lowIndex].isSelected = true;
       lowIndex++;
     }
-    if (high > pivot){
+    if (high > pivot) {
       rectangles[highIndex].isSelected = true;
       highIndex--;
     }
