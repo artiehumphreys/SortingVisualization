@@ -17,7 +17,7 @@ void setup() {
 void draw() {
   background(0);
   if (isSorting) {
-    isSorting = sort.partitionStep(new Segment(0, rectangles.length-1));
+    isSorting = sort.quickSortStep();
   }
   display(rectangles);
 }

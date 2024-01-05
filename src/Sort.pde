@@ -8,7 +8,6 @@ class Sort {
 
   Sort(MyRectangle[] rectangles) {
     this.rectangles = rectangles;
-    segments.push(new Segment(0, rectangles.length - 1));
   }
 
   void swap(int a, int b) {
@@ -129,29 +128,54 @@ class Sort {
     return false;
   }
 
+  int low = -1;
+  int high = -1;
+  
   boolean quickSortStep() {
+    if (segments.isEmpty()) {
+      segments.push(new Segment(0, rectangles.length - 1));
+    } else {
+      Segment currentSegment = segments.peek();
+      if (partitionStep(currentSegment)) {
+        return true;
+      }
+      segments.pop();
+      int partitionIndex = low;
+      high = -1;
+      low = -1;
+
+      if (currentSegment.low < partitionIndex - 1) {
+        segments.push(new Segment(currentSegment.low, partitionIndex - 1));
+      }
+      if (partitionIndex + 1 < currentSegment.high) {
+        segments.push(new Segment(partitionIndex + 1, currentSegment.high));
+      }
+
+      return !segments.isEmpty();
+    }
+    if (count < rectangles.length) {
+      rectangles[count].isDone = true;
+      count ++;
+      return true;
+    }
     return false;
   }
-
-  int low = -1; 
-  int high = -1;
-
   boolean partitionStep(Segment segment) {
     if (low == -1 && high == -1) {
       low = segment.low;
       high = segment.high - 1;
     }
-
+    
     int pivot = int(rectangles[segment.high].getHeight());
     rectangles[segment.high].isPivot = true;
 
     if (low <= high) {
-      if (rectangles[low].getHeight() <= pivot) {
+      if (rectangles[low].getHeight() > pivot) {
         low ++;
-        rectangles[high].isSelected = true;
-      } else if (rectangles[high].getHeight() > pivot) {
+        if (low < 100) rectangles[low].isSelected = true;
+      } else if (rectangles[high].getHeight() <= pivot) {
         high --;
-        rectangles[high].isSelected = true;
+        if (high > 0) rectangles[high].isSelected = true;
       } else {
         swap(low, high);
         low ++;
@@ -161,11 +185,9 @@ class Sort {
     }
     swap(low, segment.high);
     rectangles[segment.high].isPivot = false;
-    rectangles[low].isPivot = true;
 
     i = -1;
     j = -1;
-    //rectangles[segment.high].isSelected = false;
     return false;
   }
 }
