@@ -8,6 +8,7 @@ class Sort {
 
   Sort(MyRectangle[] rectangles) {
     this.rectangles = rectangles;
+    segments.push(new Segment(0, rectangles.length - 1));
   }
 
   void swap(int a, int b) {
@@ -130,11 +131,20 @@ class Sort {
 
   int low = -1;
   int high = -1;
-  
+
+  boolean isSortingDone = false;
+
   boolean quickSortStep() {
-    if (segments.isEmpty()) {
+    if (isSortingDone) {
+      highlight();
+      return finalCount < rectangles.length;
+    }
+    if (segments.isEmpty() && isSortingDone == false) {
       segments.push(new Segment(0, rectangles.length - 1));
-    } else {
+      isSortingDone = true;
+      finalCount = 0;
+    }
+    if (!segments.isEmpty()) {
       Segment currentSegment = segments.peek();
       if (partitionStep(currentSegment)) {
         return true;
@@ -151,21 +161,26 @@ class Sort {
         segments.push(new Segment(partitionIndex + 1, currentSegment.high));
       }
 
-      return !segments.isEmpty();
-    }
-    if (count < rectangles.length) {
-      rectangles[count].isDone = true;
-      count ++;
       return true;
     }
-    return false;
+    isSortingDone = true;
+    return true;
+  }
+
+  int finalCount = 0;
+
+  void highlight() {
+    if (finalCount < rectangles.length) {
+      rectangles[finalCount].isDone = true;
+      finalCount++;
+    }
   }
   boolean partitionStep(Segment segment) {
     if (low == -1 && high == -1) {
       low = segment.low;
       high = segment.high - 1;
     }
-    
+
     int pivot = int(rectangles[segment.high].getHeight());
     rectangles[segment.high].isPivot = true;
 
@@ -185,7 +200,7 @@ class Sort {
     }
     swap(low, segment.high);
     rectangles[segment.high].isPivot = false;
-
+    
     i = -1;
     j = -1;
     return false;
