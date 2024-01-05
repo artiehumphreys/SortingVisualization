@@ -143,13 +143,15 @@ class Sort {
     }
 
     int pivot = int(rectangles[segment.high].getHeight());
-    rectangles[segment.high].isSelected = true;
+    rectangles[segment.high].isPivot = true;
 
     if (low <= high) {
       if (rectangles[low].getHeight() <= pivot) {
         low ++;
+        rectangles[high].isSelected = true;
       } else if (rectangles[high].getHeight() > pivot) {
         high --;
+        rectangles[high].isSelected = true;
       } else {
         swap(low, high);
         low ++;
@@ -158,10 +160,12 @@ class Sort {
       return true;
     }
     swap(low, segment.high);
-    rectangles[segment.high].isSelected = false;
+    rectangles[segment.high].isPivot = false;
+    rectangles[low].isPivot = true;
 
     i = -1;
     j = -1;
+    //rectangles[segment.high].isSelected = false;
     return false;
   }
 }

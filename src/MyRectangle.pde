@@ -3,6 +3,7 @@ class MyRectangle {
   float w, h;
   boolean isSelected;
   boolean isDone;
+  boolean isPivot;
 
   MyRectangle(float x, float y, float w, float h) {
     this.x = x;
@@ -12,7 +13,10 @@ class MyRectangle {
   }
 
   void display() {
-    if (isSelected){
+    if (isPivot){
+      fill(255, 50, 50);
+      rect(x, y, w, h);
+    } else if (isSelected){
       fill(50, 50, 255);
       rect(x, y, w, h);
     } else if (isDone){
