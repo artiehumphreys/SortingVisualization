@@ -128,50 +128,27 @@ class Sort {
     return false;
   }
 
-  int low, high, partitionIndex;
-  boolean isPartitioning = false;
-
   boolean quickSortStep() {
-    if (stack.isEmpty()){
-      stack.push(new int[] {0, rectangles.length - 1});
-    }
-    if (!stack.isEmpty()) {
-      if (!isPartitioning) {
-        int[] range = stack.pop();
-        low = range[0];
-        high = range[1];
-        partitionIndex = low;
-        isPartitioning = true;
-      }
-      if (isPartitioning) {
-        isPartitioning = partitionStep();
-      }
-      if (!isPartitioning) {
-        if (partitionIndex - 1 > low) {
-          stack.push(new int[] {low, partitionIndex - 1});
-        }
-        if (partitionIndex + 1 < high) {
-          stack.push(new int[] {partitionIndex + 1, high});
-        }
-      }
-      return true;
-    }
     return false; 
   }
+  
+  
 
-
-  boolean partitionStep() {
-    int pivot = int(rectangles[high].getHeight());
-    rectangles[partitionIndex].isSelected = true;
-    if (partitionIndex < high) {
-      if (rectangles[partitionIndex].getHeight() < pivot) {
-        rectangles[partitionIndex].isSelected = true;
-        rectangles[high].isSelected = true;
-        swap(partitionIndex, high);
-        return true;
-      }
-      partitionIndex++;
-      return true; 
+  boolean partitionStep(int lowIndex, int highIndex) {
+    if (lowIndex == highIndex){
+      return false;
+    }
+    rectangles[highIndex].isSelected = true;
+    int pivot = int(rectangles[highIndex].getHeight());
+    int low = int(rectangles[lowIndex].getHeight());
+    int high = int(rectangles[highIndex - 1].getHeight());
+    if (low < pivot){
+      rectangles[lowIndex].isSelected = true;
+      lowIndex++;
+    }
+    if (high > pivot){
+      rectangles[highIndex].isSelected = true;
+      highIndex--;
     }
     return false;
   }
