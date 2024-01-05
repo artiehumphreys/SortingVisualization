@@ -170,6 +170,7 @@ class Sort {
   int finalCount = 0;
 
   void highlight() {
+    rectangles[rectangles.length-1].isPivot = false;
     if (finalCount < rectangles.length) {
       rectangles[finalCount].isDone = true;
       finalCount++;
