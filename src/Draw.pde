@@ -30,6 +30,11 @@ void draw() {
       break;
     }
   }
+  if(!isSorting){
+    keyPress = ' ';
+    delay(1500);
+    setup();
+  }
   display(rectangles);
   displayLabels();
 }
