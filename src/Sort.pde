@@ -137,7 +137,7 @@ class Sort {
   boolean quickSortStep() {
     if (isSortingDone) {
       highlight();
-      return finalCount < rectangles.length;
+      return finalCount <= rectangles.length;
     }
     if (segments.isEmpty() && isSortingDone == false) {
       segments.push(new Segment(0, rectangles.length - 1));

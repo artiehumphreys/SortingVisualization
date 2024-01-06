@@ -2,7 +2,7 @@ ArrayList<Bar> bars;
 MyRectangle[] rectangles;
 boolean isSorting;
 Sort sort;
-char keyPress;
+char keyPress = ' ';
 
 void setup() {
   size(1280, 720);
@@ -40,16 +40,18 @@ void draw() {
 }
 
 void keyPressed() {
-  switch(key) {
-  case 'q':
-    keyPress = 'q';
-    break;
-  case 'b':
-    keyPress = 'b';
-    break;
-  case 's':
-    keyPress = 's';
-    break;
+  if (keyPress == ' '){
+    switch(key) {
+    case 'q':
+      keyPress = 'q';
+      break;
+    case 'b':
+      keyPress = 'b';
+      break;
+    case 's':
+      keyPress = 's';
+      break;
+    }
   }
 }
 
