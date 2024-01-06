@@ -2,6 +2,7 @@ ArrayList<Bar> bars;
 MyRectangle[] rectangles;
 boolean isSorting;
 Sort sort;
+char keyPress;
 
 void setup() {
   size(1280, 720);
@@ -17,9 +18,44 @@ void setup() {
 void draw() {
   background(0);
   if (isSorting) {
-    isSorting = sort.quickSortStep();
+    switch(keyPress) {
+    case 'q':
+      isSorting = sort.quickSortStep();
+      break;
+    case 'b':
+      isSorting = sort.bubbleSortStep();
+      break;
+    case 's':
+      isSorting = sort.selectionSortStep();
+      break;
+    }
   }
   display(rectangles);
+  displayLabels();
+}
+
+void keyPressed() {
+  switch(key) {
+  case 'q':
+    keyPress = 'q';
+    break;
+  case 'b':
+    keyPress = 'b';
+    break;
+  case 's':
+    keyPress = 's';
+    break;
+  }
+}
+
+void displayLabels() {
+  String quick = "[q] Quick Sort";
+  String selection = "[s] Selection Sort";
+  String bubble = "[b] Bubble Sort";
+  fill(160);
+  text(quick, 50, 50);
+  text(selection, 50, 75);
+  text(bubble, 50, 100);
 }
 
 void createArray() {
